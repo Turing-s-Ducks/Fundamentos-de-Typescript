@@ -100,7 +100,32 @@
 
 // Promesas 
 (()=>{
+    const myPromesa = new Promise((resolve, reject)=>{
+        setTimeout(() => {
+            resolve('se termino el timeout');
+            reject('se termino la promise');
+        }, 1000);
+    });
+    myPromesa.then(mensaje => console.log(mensaje)).catch( err => console.warn(err));
+})();
 
+// Promesas 
+(()=>{
+    let realizaPago = ( montoPago:number) =>{
+        let montoCuenta = 1000;
+        return new Promise( (resolve, reject)=>{
+            if(montoPago< montoCuenta){
+                montoCuenta -= montoPago;
+                resolve('El pago se ha realizado con exito');
+            }else{
+                reject('No cuentas con los fondo suficientes')
+            }
+        });
+    }
+
+    realizaPago(500).then(
+        montoCuenta => console.log(montoCuenta)
+    )
 })();
 
 
